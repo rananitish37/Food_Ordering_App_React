@@ -1333,6 +1333,7 @@ const resList = [
           "type": "DEEPLINK"
         }
       }
+      
 ];
 
 export default resList;
