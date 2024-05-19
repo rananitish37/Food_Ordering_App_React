@@ -7,6 +7,10 @@ const Body = () => {
 
     const [listOfRestro, setListOfRestro] = useState([]);
 
+    const [searchText, setSearchText] = useState("");
+
+    const [listOfRestroTemp, setListOfTesroTemp] = useState([]);
+
     useEffect(() => {
         fetchData();
     },[]);
@@ -16,27 +20,45 @@ const Body = () => {
 
         const json = await data.json();
 
+
         // console.log(json?.data?.success?.cards[1]?.gridWidget?.gridElements?.infoWithStyle?.restaurants);
         setListOfRestro(json?.data?.success?.cards[1]?.gridWidget?.gridElements?.infoWithStyle?.restaurants);
+        setListOfTesroTemp(json?.data?.success?.cards[1]?.gridWidget?.gridElements?.infoWithStyle?.restaurants);
     }; 
 
-    if(listOfRestro.length === 0){
-        return <Shimmer />
-    }
+    // conditional rendring
+    // if(listOfRestro.length === 0){
+    //     return <Shimmer />
+    // }
 
-    return(
+    return listOfRestro.length === 0 ? (<Shimmer />) : (
         <div className="body">
                 <div className="filter">
+                    <div className="search">
+                        <input type="text" className="search-box" value={searchText} onChange={(e) =>{
+                            setSearchText(e.target.value);
+                        }} />
+                        <button 
+                            onClick={() => {
+                                const filteredRestro = listOfRestro.filter((res) =>
+                                    res.info.name.toLowerCase().includes(searchText.toLowerCase())
+                                );
+
+                            // console.log(filteredRestro);
+                            setListOfTesroTemp(filteredRestro);
+                            
+                        }} >Search</button>
+                    </div>
                     <button className="filter-btn"
                         onClick={() => {
-                            const filteredList = listOfRestro.filter(
+                            const filteredList = listOfRestroTemp.filter(
                                 (res) => res.info.avgRating > 4);
-                                setListOfRestro(filteredList);
+                                setListOfTesroTemp(filteredList);
                         }}
                     >Top Rated Restaurant</button>
             </div>
             <div className="res-container">
-                {listOfRestro.map((restaurant) =>(
+                {listOfRestroTemp.map((restaurant) =>(
                     <RestaurantCard key={restaurant.info.id} resData={restaurant} />
                 ))}
             </div>
