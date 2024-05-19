@@ -1,10 +1,11 @@
 import RestaurantCard from "./RestaurantCard";
-import resList from "../utils/mockData";
+// import resList from "../utils/mockData";
 import { useEffect, useState } from "react";
+import Shimmer from "./Shimmer"
 
 const Body = () => {
 
-    const [listOfRestro, setListOfRestro] = useState(resList);
+    const [listOfRestro, setListOfRestro] = useState([]);
 
     useEffect(() => {
         fetchData();
@@ -15,10 +16,13 @@ const Body = () => {
 
         const json = await data.json();
 
-        // console.log(json);
-        console.log(json?.data?.success?.cards[0]?.gridWidget?.imageGridCards);
-        // setListOfRestro(json?.data?.success?.cards[0]?.gridWidget?.imageGridCards);
+        // console.log(json?.data?.success?.cards[1]?.gridWidget?.gridElements?.infoWithStyle?.restaurants);
+        setListOfRestro(json?.data?.success?.cards[1]?.gridWidget?.gridElements?.infoWithStyle?.restaurants);
     }; 
+
+    if(listOfRestro.length === 0){
+        return <Shimmer />
+    }
 
     return(
         <div className="body">
