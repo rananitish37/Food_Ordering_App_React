@@ -2,7 +2,7 @@
 
 const Error = () => {
     // const errorMsg = useRouteError();
-    console.log(errorMsg);
+    // console.log(errorMsg);
     return(
         <div>
             <h1>Oops!!</h1>
