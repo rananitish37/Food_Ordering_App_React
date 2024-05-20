@@ -20,7 +20,7 @@ const Body = () => {
 
         const json = await data.json();
 
-
+        //optional chaining
         // console.log(json?.data?.success?.cards[1]?.gridWidget?.gridElements?.infoWithStyle?.restaurants);
         setListOfRestro(json?.data?.success?.cards[1]?.gridWidget?.gridElements?.infoWithStyle?.restaurants);
         setListOfTesroTemp(json?.data?.success?.cards[1]?.gridWidget?.gridElements?.infoWithStyle?.restaurants);
