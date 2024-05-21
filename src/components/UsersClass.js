@@ -7,33 +7,52 @@ class UsersClass extends React.Component{
     constructor(props){
         super(props);
 
+        console.log(this.props.name+" child Constructor");
         // this.state={
         //     count:0,
         //     count2:1,
         // }
+        // this.state={
+        //     count:0,
+        // } 
         this.state={
-            count:0,
-        }
+            userInfo:{
+                name:"dummy",
+                location:"default",
+            },
+        };
     }
 
-    componentDidMount(){
-        console.log("Mount");
+    async componentDidMount(){
+        // console.log(this.props.name+" componentDidMount");
+        const getData= await fetch("https://api.github.com/users/rananitish37");
+
+        const json = await getData.json();
+
+        this.setState({
+            userInfo:json,
+        });
+
+        console.log(json);
     }
 
     
     render(){
-        const {name, location} = this.props;
+        const {name, location,avatar_url} = this.state.userInfo;
+        console.log(name+" child render");
         // const {count,count2} = this.state;
-        const { count } = this.state;
+        // const { count } = this.state;
         return(
             <div className="user_info">
                 {/* <h1>count: {this.state.count}</h1> */}
-                <h1>count: {count}</h1>
+                {/* <h1>count: {count}</h1>
                 <button onClick={()=>{
                     this.setState({
                         count:this.state.count+1,
                 })
-                }}>Click to inc count</button>
+                }}>Click to inc count</button> */}
+
+                <img src={avatar_url}/>
                 <h1>Name: {name}</h1>
                 <h2>Location: {location}</h2>
             </div>
