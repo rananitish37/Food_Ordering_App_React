@@ -40,12 +40,12 @@ const Body = () => {
 
     return listOfRestro.length === 0 ? (<Shimmer />) : (
         <div className="body">
-                <div className="filter">
-                    <div className="search">
-                        <input type="text" className="search-box" value={searchText} onChange={(e) =>{
+                <div className="filter flex">
+                    <div className="search p-4 m-4 ">
+                        <input type="text" className="border border-solid border-black" value={searchText} onChange={(e) =>{
                             setSearchText(e.target.value);
                         }} />
-                        <button 
+                        <button className="px-4 py-1 bg-red-100 m-4"
                             onClick={() => {
                                 const filteredRestro = listOfRestro.filter((res) =>
                                     res.info.name.toLowerCase().includes(searchText.toLowerCase())
@@ -56,15 +56,18 @@ const Body = () => {
                             
                         }} >Search</button>
                     </div>
-                    <button className="filter-btn"
-                        onClick={() => {
-                            const filteredList = listOfRestroTemp.filter(
-                                (res) => res.info.avgRating > 4);
-                                setListOfTesroTemp(filteredList);
-                        }}
-                    >Top Rated Restaurant</button>
+                    <div className="p-4 m-4 flex items-center">
+                        <button className="p-4 py-1 m-2  bg-red-100"
+                            onClick={() => {
+                                const filteredList = listOfRestroTemp.filter(
+                                    (res) => res.info.avgRating > 4);
+                                    setListOfTesroTemp(filteredList);
+                            }}
+                        >Top Rated Restaurant</button>
+                    </div>
+                    
             </div>
-            <div className="res-container">
+            <div className="flex flex-wrap px-7">
                 {listOfRestroTemp.map((restaurant) =>(
                     <Link key={restaurant.info.id} to={"/restaurant/"+restaurant.info.id} ><RestaurantCard resData={restaurant} /></Link>
                 ))}

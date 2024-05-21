@@ -43,7 +43,7 @@ class UsersClass extends React.Component{
         // const {count,count2} = this.state;
         // const { count } = this.state;
         return(
-            <div className="user_info">
+            <div className="m-4 p-4 rounded-lg bg-gray-100">
                 {/* <h1>count: {this.state.count}</h1> */}
                 {/* <h1>count: {count}</h1>
                 <button onClick={()=>{
@@ -52,8 +52,8 @@ class UsersClass extends React.Component{
                 })
                 }}>Click to inc count</button> */}
 
-                <img src={avatar_url}/>
-                <h1>Name: {name}</h1>
+                <img className="w-36 rounded-lg" src={avatar_url}/>
+                <h1 className="font-bold">Name: {name}</h1>
                 <h2>Location: {location}</h2>
             </div>
         )
