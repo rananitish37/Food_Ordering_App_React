@@ -1,4 +1,4 @@
-import RestaurantCard from "./RestaurantCard";
+import RestaurantCard,{withPromotedLabel} from "./RestaurantCard";
 // import resList from "../utils/mockData";
 import { useEffect, useState } from "react";
 import Shimmer from "./Shimmer"
@@ -12,6 +12,8 @@ const Body = () => {
     const [searchText, setSearchText] = useState("");
 
     const [listOfRestroTemp, setListOfTesroTemp] = useState([]);
+
+    const RestaurantCardPromoted = withPromotedLabel(RestaurantCard);
 
     useEffect(() => {
         fetchData();
@@ -33,6 +35,7 @@ const Body = () => {
     //     return <Shimmer />
     // }
 
+    // console.log(listOfRestro);
     const onlineStatus = useOnlineStatus();
     if(onlineStatus === false ) return(
         <h1>Seems your are offline please check your internet connection</h1>
@@ -69,7 +72,11 @@ const Body = () => {
             </div>
             <div className="flex flex-wrap px-7">
                 {listOfRestroTemp.map((restaurant) =>(
-                    <Link key={restaurant.info.id} to={"/restaurant/"+restaurant.info.id} ><RestaurantCard resData={restaurant} /></Link>
+                    <Link key={restaurant.info.id} to={"/restaurant/"+restaurant.info.id} >
+                        {restaurant.info.promoted ?
+                        <RestaurantCardPromoted resData={restaurant}/> :
+                        <RestaurantCard resData={restaurant} />}
+                    </Link>
                 ))}
             </div>
         </div>
