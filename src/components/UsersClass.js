@@ -7,7 +7,7 @@ class UsersClass extends React.Component{
     constructor(props){
         super(props);
 
-        console.log(this.props.name+" child Constructor");
+        // console.log(this.props.name+" child Constructor");
         // this.state={
         //     count:0,
         //     count2:1,
@@ -33,13 +33,13 @@ class UsersClass extends React.Component{
             userInfo:json,
         });
 
-        console.log(json);
+        // console.log(json);
     }
 
     
     render(){
         const {name, location,avatar_url} = this.state.userInfo;
-        console.log(name+" child render");
+        // console.log(name+" child render");
         // const {count,count2} = this.state;
         // const { count } = this.state;
         return(
