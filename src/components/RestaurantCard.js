@@ -2,6 +2,7 @@ import {CDN_URL} from "../utils/constant";
 
 const RestaurantCard = (props) => {
     const {resData} = props;
+    console.log(resData);
     const {name,cuisines,avgRating,costForTwo} = resData?.info;
     return(
         <div className="m-4 p-4 w-[250px] rounded-lg shadow-lg bg-gray-100 hover:bg-gray-200">
