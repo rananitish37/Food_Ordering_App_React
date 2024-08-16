@@ -20,7 +20,7 @@ const Body = () => {
     },[]);
 
     const fetchData = async () => {
-        const data = await fetch("https://www.swiggy.com/mapi/homepage/getCards?lat=23.0224734&lng=72.5715931");
+        const data = await fetch("https://www.swiggy.com/mapi/homepage/getCards?lat=25.59080&lng=85.13480");
 
         const json = await data.json();
 
