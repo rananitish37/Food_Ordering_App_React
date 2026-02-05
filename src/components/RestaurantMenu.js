@@ -17,11 +17,11 @@ const RestaurantMenu  = () =>{
 
     const {name,cuisines, costForTwoMessage} = resInfo?.cards[2]?.card?.card?.info;
 
-    const  categories  = resInfo.cards[5]?.groupedCard?.cardGroupMap?.REGULAR?.cards.filter(
+    const  categories  = resInfo.cards[4].groupedCard?.cardGroupMap?.REGULAR?.cards.filter(
         (c) => c.card?.card?.["@type"] === "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory"
     );
 
-    // console.log(categories);
+    console.log(categories);
 
     return(
         <div className="text-center">
