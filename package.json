@@ -5,8 +5,8 @@
   "main": "App.js",
   "scripts": {
     "start": "parcel index.html",
-    "build": "parcel build index.html",
-    "test": "jest"
+    "build": "parcel build index.html --dist-dir dist --public-url .",
+    "test": "parcel build index.html --dist-dir dist --public-url . && npx serve dist"
   },
   "repository": {
     "type": "git",
